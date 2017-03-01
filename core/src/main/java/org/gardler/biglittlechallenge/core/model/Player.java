@@ -7,6 +7,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.UUID;
+import java.util.*;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -251,6 +252,24 @@ public class Player implements Serializable {
 		status.setState(State.Idle);
 	}
 	
+	private static String[] getEngineUrls(){
+		logger.info("Loading engine endpoints....");
+
+		ArrayList<String> urls = new ArrayList<String>();
+		urls.add("http://localhost:8080/");
+		urls.add("http://engine:8080/");
+		
+		String engineUrl = System.getenv("ENGINE_URL");
+		if(engineUrl != null && !engineUrl.isEmpty()) {
+			logger.info("Environment variable ENGINE_URL set to: " + engineUrl);
+			urls.add(engineUrl);
+		}
+		String[] url = new String[urls.size()];
+		url = urls.toArray(url); 
+
+		return url;
+	}
+
 	/**
 	 * Return the endpoint of an available engine API.
 	 * 
@@ -259,9 +278,10 @@ public class Player implements Serializable {
 	 */
 	public static String getEngineEndoint() {
 		int index = 0;
-		String[] url = { "http://localhost:8080/", "http://engine:8080/" };
-		
+		String[] url = getEngineUrls();
+
 		while (engineEndpoint == null) { 
+			
 			Response response = checkEngineStatus(url[index]);
 			if (response != null) {
 				if (response.getStatus() != 200) {
