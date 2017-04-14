@@ -54,7 +54,7 @@ interaction. There is really no limit to what could be implemented.
 
 # Development Ideas
 
-This section de3scribes random ideas about how the ganme might develop.
+This section describes random ideas about how the ganme might develop.
 
   1. Equipment cards - these give characters specials boosts, for
      example, running shoes might increase speed by 1 point. FOr pole
