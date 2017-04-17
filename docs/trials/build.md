@@ -47,13 +47,13 @@ Docker Compose has been integrated into the Docker CLI and you can run the appli
 
 *Make sure to use the v3 compose file that is in the root folder*
 
-Note, by default these scripts start a 5 plauer game but only create 2
-players, this means it is necessary to sale the aiplayer service to
+Note, by default these scripts start a 5 player game but only create 2
+players, this means it is necessary to scale the aiplayer service to
 actually start the game:
 
 `docker service scale biglittlechallenge_aiplayer=5`
 
-To view the engine dashbaord visit http://MY_HOST:8181
+To view the engine dashboard visit http://MY_HOST:8181
 
 Check the logs of the services (this is harder than it should be, need
 to put a REST API to get useful info)
